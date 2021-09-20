@@ -7,7 +7,7 @@ export AWS_SECRET_ACCESS_KEY=""
 
 -   Set Terraform base Path
 ```
-bPTH='Advanced-Devops-AWS-Terraform-Jenkins-52-Hours/01-Terraform'
+bPTH='Training-Advanced-Devops-AWS-Terraform-Jenkins/01-Terraform'
 ```
 
 ## Deploying Infrastructure with Terraform
