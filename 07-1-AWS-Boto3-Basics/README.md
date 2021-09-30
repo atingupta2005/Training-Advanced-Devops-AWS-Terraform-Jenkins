@@ -29,9 +29,3 @@ sudo apt install -y python3-virtualenv
 
  - Python Virtual Environment, Install Jupyter Notebook and Boto3 Python library
     - Refer and run [setup-env.sh](setup-env.sh)
-
-# Boto3 Sample code to interact with AWS
-- 01-list-iam-users.py
-- 2-about_session_client_resouce.py
-- 3-custom_and_default_sessions.py
-- 4-resource_object_examples.py
