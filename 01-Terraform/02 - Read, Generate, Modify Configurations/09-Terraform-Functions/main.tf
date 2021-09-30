@@ -8,7 +8,7 @@ locals {
 }
 
 variable "region" {
-  default = "ap-south-1"
+  default = "us-east-1"
 }
 
 variable "tags" {
@@ -20,8 +20,8 @@ variable "itype" {
   type = map(any)
   default = {
     "us-east-1"  = "t2.micro"
-    "us-west-2"  = "t2.nano"
-    "ap-south-1" = "t2.small"
+    "us-east-1"  = "t2.nano"
+    "us-east-1" = "t2.small"
   }
 }
 

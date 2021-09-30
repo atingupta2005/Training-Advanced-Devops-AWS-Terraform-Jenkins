@@ -10,37 +10,45 @@
 - Steps
    - Create a directory
    ```
-   mkdir my-math-function
-   cd my-math-function
+   cd
+   mkdir ~/my-math-function
+   cd ~/my-math-function
    ```
-   - Copy the contents of the sample Python code from [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py) and save it in a new file named lambda_function.py
+   - Copy the contents of the sample Python code from [GitHub](https://raw.githubusercontent.com/awsdocs/aws-doc-sdk-examples/master/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py) and save it in a new file named lambda_function.py
    - Add the lambda_function.py file to the root of the .zip file.
    ```
+   sudo apt install -y zip
    zip my-deployment-package.zip lambda_function.py
    ```
-   - This generates a my-deployment-package.zip file in your project directory. The command produces the following output:
-   ```
-   adding: lambda_function.py (deflated 50%)
-   ```
+   - This generates a my-deployment-package.zip file in your project directory.
+
+## Deploy your .zip file to the function
+ - Using AWS console UI, create a lambda function named- MyLambdaFunction1
+ - To deploy the new code to your function, you upload the new .zip file deployment package.
+```
+aws lambda update-function-code --function-name MyLambdaFunction1 --zip-file fileb://my-deployment-package.zip
+```
+
 
 ## Deployment package without dependencies
 - Create the .zip file for your deployment package.
 - Steps
     - Create a directory
     ```
-    mkdir my-sourcecode-function
-    cd my-sourcecode-function
+    cd
+    mkdir ~/my-sourcecode-function
+    cd ~/my-sourcecode-function
     ```
     - Copy the contents of the following sample Python code and save it in a new file named lambda_function.py:
-    ```
-    import requests
-    def main(event, context):   
-        response = requests.get("https://www.test.com/")
-        print(response.text)
-        return response.text
-    if __name__ == "__main__":   
-        main('', '')
-    ```
+```
+import requests
+def main(event, context):   
+    response = requests.get("https://www.youtube.com/")
+    print(response.text)
+    return response.text
+def lambda_handler(event, context):
+    main('', '')
+```
   - Install the requests library to a new package directory.
   ```
   pip install --target ./package requests
@@ -63,11 +71,11 @@
   ```
 
 ## Deploy your .zip file to the function
-- To deploy the new code to your function, you upload the new .zip file deployment package.
+ - Using AWS console UI, create a lambda function named- MyLambdaFunction2
+ - To deploy the new code to your function, you upload the new .zip file deployment package.
 ```
-~/my-function$ aws lambda update-function-code --function-name MyLambdaFunction --zip-file fileb://my-deployment-package.zip
+aws lambda update-function-code --function-name MyLambdaFunction2 --zip-file fileb://my-deployment-package.zip
 ```
-
 
 
 # AWS Lambda function errors in Python
@@ -82,13 +90,8 @@
 ## Using the AWS Command Line Interface (AWS CLI)
 - The following invoke command example demonstrates how to invoke a function and write the invocation response to an output.txt file.
 ```
-aws lambda invoke   \
-  --function-name my-function   \
-      --cli-binary-format raw-in-base64-out  \
-          --payload '{"key1": "value1", "key2": "value2", "key3": "value3"}' output.txt
+aws lambda invoke --function-name MyLambdaFunction1 --payload '{"action": "square", "number": 5 }' output.txt
 ```
-    - The cli-binary-format option is required if you are using AWS CLI version 2
-
 - You should see the AWS CLI response in your command prompt
 - You should see the invocation response in your command prompt
 - You should also see the function invocation response in the output.txt file

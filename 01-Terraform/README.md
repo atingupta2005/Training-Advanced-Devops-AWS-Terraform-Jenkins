@@ -881,7 +881,7 @@ sudo snap install aws-cli --classic
 aws configure
 #AWS Access Key ID [None]: <>
 #AWS Secret Access Key [None]: <>
-#Default region name [None]: us-east-2
+#Default region name [None]: us-east-1
 #Default output format [None]: table/json/yaml
 ```
 

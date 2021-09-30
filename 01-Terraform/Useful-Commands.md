@@ -229,15 +229,15 @@ resource "digitalocean_droplet" "my_droplet" {
 # main.tf
 resource "aws_instance" "myec2" {
     ami = "ami082c5a44755e0e6f"
-    instance_type = var.types["us-west-2"]
+    instance_type = var.types["us-east-1"]
 }
 
 variable "types" {
     type = map
     default = {
         us-east-1 = "t2.micro"
-        us-west-2 = "t2.nano"
-        ap-south-1 = "t2.small"
+        us-east-1 = "t2.nano"
+        us-east-1 = "t2.small"
     }
 }
 ```
@@ -273,7 +273,7 @@ resource "aws_instance" "app-dev" {
 }
 
 resource "aws_ebs_volume" "db_ebs" {
-  availability_zone = "us-west-2a"
+  availability_zone = "us-east-1a"
   size              = 8
   tags = local.common_tags
 }
@@ -308,8 +308,8 @@ variable "ami" {
     type = map
     default = {
         "us-east-1" = "ami-5b41123e"
-        "us-west-2" = "ami-0d6621c01e8c2de2c"
-        "ap-south-1" = "ami-0470e33cd681b2476"
+        "us-east-1" = "ami-0d6621c01e8c2de2c"
+        "us-east-1" = "ami-0470e33cd681b2476"
     }
 }
 
@@ -345,7 +345,7 @@ resource "aws_instance" "app-dev" {
 ```
 # main.tf
 
-# retrieve the correct ami for the ap-southeast-1 region
+# retrieve the correct ami for the us-easteast-1 region
 provider "aws" {
   region = "us-east-1"
 }

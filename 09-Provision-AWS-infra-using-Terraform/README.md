@@ -30,7 +30,7 @@
 
 ### Prerequisites
  - Java
- - Apache Mave
+ - Apache Maven
  - Terraform
  - An AWS Account
 
