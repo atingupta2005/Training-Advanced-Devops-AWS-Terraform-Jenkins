@@ -27,7 +27,7 @@ ssh-add -l
 
  - Enter this command to display the contents of your public key
 ```
- cat ~/.ssh/id_rsa.pub
+ cat .ssh/id_rsa.pub
 ```
 
  - Copy the contents of your key to your clipboard (we will need it later)

@@ -21,7 +21,6 @@
 - Integrate Jenkins with GitHub
 
 - Go to Manage Jenkins\\Configure System - Go to GitHub section
-- Update value of - Github API usage rate limiting strategy
 
 - Go to [GitHub Repository](https://github.com/atingupta2005/simple-java-maven-app) - click on settings- Go to webhook and click Add Webhook
 

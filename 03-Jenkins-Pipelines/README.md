@@ -108,5 +108,5 @@ pipeline {
 sudo usermod -a -G docker  jenkins
 ```
 
-## More Optional Pipeline Examples (Self Practicals)
+## More Pipeline Examples
 - Refer: https://github.com/atingupta2005/jenkins-pipeline-examples.git
