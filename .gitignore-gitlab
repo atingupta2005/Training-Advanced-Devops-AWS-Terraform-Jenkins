@@ -1,3 +1,9 @@
+**/target
+**/target/*
+target
+target/*
+**/*.class
+*.class
 *Finance*
 *Finance*/*
 **/*Finance*
