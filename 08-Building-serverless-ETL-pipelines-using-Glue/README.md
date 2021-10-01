@@ -2,7 +2,7 @@
 - Building serverless ETL pipelines using Amazon Glue.
 
 # Code Repo:
- - https://github.com/atingupta2005/aws-glue-etl-pipeline
+ - https://github.com/atingupta2005/aws-glue-etl-pipeline-basic-nginx-logs
 
 ## AWS Glue
  - Automatically discovers and categorise your data and make it immediately searchable and query-able using Amazon Athena, Amazon Redshift or Amazon EMR.
@@ -15,15 +15,18 @@
 
 - Also, we need an S3 Bucket to put the files to process, the output results and some other files managed by Glue.
 
-- Remember to run:
+- Clone Git Repo and change bucket name
 ```
-terraform init
-terraform apply
+git clone https://github.com/atingupta2005/aws-glue-etl-pipeline-basic-nginx-logs
+cd aws-glue-etl-pipeline-basic-nginx-logs/
+terraform  init
+terraform apply -var="bucket_for_glue=atin-aws-glue-etl-process" -auto-approve
 ```
 
 - To copy some example logs (nginx_logs.txt in project folder) execute:
 ```
-aws s3 cp ./nginx_logs.txt s3://{bucket}/data/raw/nginx_logs.txt
+# Template: aws s3 cp ./nginx_logs.txt s3://{bucket}/data/raw/nginx_logs.txt
+aws s3 cp ./nginx_logs.txt s3://atin-aws-glue-etl-process/data/raw/nginx_logs.txt
 ```
 
 - First, we need to create the database within Glue Data Catalog.
@@ -35,15 +38,35 @@ aws s3 cp ./nginx_logs.txt s3://{bucket}/data/raw/nginx_logs.txt
 
 #### Athena
   - A serverless service that makes really easy to analyze data in Amazon S3 using standard SQL.
+  - Open Athena on AWS Console and run below query:
+```
+select * from "database-etl-pipeline-basic-nginx-logs"."raw"
+```
 
+### ETL
 - At this point we are ready to perform an ETL job over the data, in this case, the Apache logs we use in this example project
 - The purpose of the next step is to extract only some fields and them save it in a parquet format file
-
+- Create ETL Job in Glue
+```
+Glue version: Spark 2.4
+Choose a data source: raw
+Choose a transform type: Change schema
+Choose a data target: Create tables in your data target
+Data store: S3
+Format: parquet
+Target path: s3://atin-aws-glue-etl-process
+```
 - When the job is created, execute it and wait for a while. This process could take some minutes.
 - Once the process is finished, you must be able to see the data output in your S3 bucket.
-- Execute once again the crawler and you will see your data catalog updated with the new table.
+
+- Destroy
+```
+terraform destroy -auto-approve
+```
 
 ### Using Custom Classifiers
+- Code Repo
+  - https://github.com/atingupta2005/aws-glue-etl-pipeline-custom-classifier.git
 - You might need to define a custom classifier if your data doesn’t match any built-in classifiers, or if you want to customize the tables that are created by the crawler.
 - We’ll use a custom file with a very simple information.
 
@@ -55,13 +78,25 @@ aws s3 cp ./nginx_logs.txt s3://{bucket}/data/raw/nginx_logs.txt
 "Samsung 27-VA",CA,50.0,3
 ```
 
-- Copy the file to your S3 bucket using:
+- Clone Git Repo:
 ```
-aws s3 cp ./custom_data.csv s3://{bucket}/sales/custom_data.csv
+git clone https://github.com/atingupta2005/aws-glue-etl-pipeline-custom-classifier.git
+cd aws-glue-etl-pipeline-custom-classifier
 ```
 
 - This time we could use Terraform for creating a new database, a custom classifier and a new crawler.
+```
+terraform  init
+terraform apply -var="bucket_for_glue=atin-aws-glue-etl-process" -auto-approve
+```
+
+- Copy the file to your S3 bucket using:
+```
+# Template: aws s3 cp ./custom_data.csv s3://{bucket}/sales/custom_data.csv
+aws s3 cp ./custom_data.csv s3://atin-aws-glue-etl-process/sales/custom_data.csv
+```
 
 - Then, go and create a new job to process the sales database with the purpose of converting to parquet file type.
+
 
 - You can check your S3 bucket and use Athena to query your data.

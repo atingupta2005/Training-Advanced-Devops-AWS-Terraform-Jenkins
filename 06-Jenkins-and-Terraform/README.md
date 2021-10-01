@@ -24,5 +24,15 @@
 - Pipeline supports fetching the DSL (Domain Specific Language) script from the SCM
 - Typically called Jenkinsfile and located in the root of the project.
 
+### AWS Credentials
+- To be able to upload to S3, you need to save your credentials in environment variables on your Jenkins:
+  - AWS_DEFAULT_REGION=\<region of bucket\>
+  - AWS_ACCESS_KEY_ID=\<aws id\>
+  - AWS_SECRET_ACCESS_KEY=\<your access key\>
+
+- To do that, just go to Jenkins - Manage Jenkins - Configure System - Global properties - Environment variables
+
+
+
 ### Sample Project
 - https://github.com/atingupta2005/Terraform-Jenkins-integration-AWS
