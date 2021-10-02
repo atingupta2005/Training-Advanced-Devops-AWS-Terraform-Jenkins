@@ -30,7 +30,7 @@ aws lambda update-function-code --function-name MyLambdaFunction1 --zip-file fil
 ```
 
 
-## Deployment package without dependencies
+## Deployment package with dependencies
 - Create the .zip file for your deployment package.
 - Steps
     - Create a directory
