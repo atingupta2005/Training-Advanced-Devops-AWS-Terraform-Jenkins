@@ -36,6 +36,10 @@ cat out.txt
 - The way to connect Lambda to VPC is by associating it with at least one private subnet
 - That would give the function access to the resources in the VPC. But it won't have oubound connectivity yet. For that, a NAT component is required.
 
+## VPC with public and private subnets (NAT)
+- https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html
+
+
 ## Create VPC
 
 ```
@@ -171,9 +175,6 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 ```
-
-## VPC with public and private subnets (NAT)
-- https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html
 
 ## Create private subnet
 - Private subnet is what we will associate Lambda with. The address space must be large enough to accomodate all IPs that will be assigned to ENIs when Lambda scales out.
