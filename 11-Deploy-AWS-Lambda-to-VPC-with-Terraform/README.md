@@ -343,5 +343,26 @@ resource "aws_lambda_function" "lambda_function" {
 }
 ```
 
+## Deploy AWS Lambda to VPC with Terraform
+```
+git clone https://github.com/atingupta2005/deploy-aws-lambda-to-vpc-with-terraform.git
+cd terraform
+```
+
+```
+terraform init
+```
+
+```
+terraform apply -auto-approve
+```
+
 ## Test
 - To confirm everything is configured correctly, invoke the function again. If you're getting "timed out" error in Cloudwatch, likely something is wrong with the NAT Gateway configuration as the function cannot reach the API.
+```
+aws lambda invoke --function-name lambda-vpc-tf-lambda-function out.txt
+```
+
+```
+cat out.txt
+```
