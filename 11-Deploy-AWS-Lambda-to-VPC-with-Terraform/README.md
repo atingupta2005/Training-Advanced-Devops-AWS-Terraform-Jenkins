@@ -26,10 +26,6 @@ terraform apply
 ## Make sure Lambda works:
 ```
 aws lambda invoke --function-name lambda-vpc-tf-lambda-function out.txt
-{
-    "StatusCode": 200,
-    "ExecutedVersion": "$LATEST"
-}
 ```
 ```
 cat out.txt
